@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B9C18332818D8700077D472 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C18322818D8700077D472 /* ActivityViewController.swift */; };
+		3B9C18352818D8A30077D472 /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C18342818D8A30077D472 /* ScheduleDetailViewController.swift */; };
+		3B9C18372818D8B30077D472 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C18362818D8B30077D472 /* ActivityDetailViewController.swift */; };
+		3B9C18392818D8D70077D472 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C18382818D8D70077D472 /* CategoriesViewController.swift */; };
 		3BB3F3712818B52A00B21469 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3F3702818B52A00B21469 /* AppDelegate.swift */; };
 		3BB3F3732818B52A00B21469 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3F3722818B52A00B21469 /* SceneDelegate.swift */; };
-		3BB3F3752818B52A00B21469 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3F3742818B52A00B21469 /* ViewController.swift */; };
+		3BB3F3752818B52A00B21469 /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3F3742818B52A00B21469 /* SchedulerViewController.swift */; };
 		3BB3F3782818B52A00B21469 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB3F3762818B52A00B21469 /* Main.storyboard */; };
 		3BB3F37B2818B52A00B21469 /* My_Scheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3F3792818B52A00B21469 /* My_Scheduler.xcdatamodeld */; };
 		3BB3F37D2818B52B00B21469 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB3F37C2818B52B00B21469 /* Assets.xcassets */; };
@@ -17,10 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B9C18322818D8700077D472 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		3B9C18342818D8A30077D472 /* ScheduleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewController.swift; sourceTree = "<group>"; };
+		3B9C18362818D8B30077D472 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
+		3B9C18382818D8D70077D472 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		3BB3F36D2818B52A00B21469 /* My Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Scheduler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB3F3702818B52A00B21469 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BB3F3722818B52A00B21469 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3BB3F3742818B52A00B21469 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3BB3F3742818B52A00B21469 /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerViewController.swift; sourceTree = "<group>"; };
 		3BB3F3772818B52A00B21469 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3BB3F37A2818B52A00B21469 /* My_Scheduler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Scheduler.xcdatamodel; sourceTree = "<group>"; };
 		3BB3F37C2818B52B00B21469 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,10 +68,14 @@
 			children = (
 				3BB3F3702818B52A00B21469 /* AppDelegate.swift */,
 				3BB3F3722818B52A00B21469 /* SceneDelegate.swift */,
-				3BB3F3742818B52A00B21469 /* ViewController.swift */,
+				3BB3F3742818B52A00B21469 /* SchedulerViewController.swift */,
+				3B9C18322818D8700077D472 /* ActivityViewController.swift */,
+				3B9C18342818D8A30077D472 /* ScheduleDetailViewController.swift */,
+				3B9C18362818D8B30077D472 /* ActivityDetailViewController.swift */,
+				3B9C18382818D8D70077D472 /* CategoriesViewController.swift */,
 				3BB3F3762818B52A00B21469 /* Main.storyboard */,
-				3BB3F37C2818B52B00B21469 /* Assets.xcassets */,
 				3BB3F37E2818B52B00B21469 /* LaunchScreen.storyboard */,
+				3BB3F37C2818B52B00B21469 /* Assets.xcassets */,
 				3BB3F3812818B52B00B21469 /* Info.plist */,
 				3BB3F3792818B52A00B21469 /* My_Scheduler.xcdatamodeld */,
 			);
@@ -141,9 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BB3F3752818B52A00B21469 /* ViewController.swift in Sources */,
+				3B9C18352818D8A30077D472 /* ScheduleDetailViewController.swift in Sources */,
+				3BB3F3752818B52A00B21469 /* SchedulerViewController.swift in Sources */,
+				3B9C18372818D8B30077D472 /* ActivityDetailViewController.swift in Sources */,
 				3BB3F37B2818B52A00B21469 /* My_Scheduler.xcdatamodeld in Sources */,
 				3BB3F3712818B52A00B21469 /* AppDelegate.swift in Sources */,
+				3B9C18332818D8700077D472 /* ActivityViewController.swift in Sources */,
+				3B9C18392818D8D70077D472 /* CategoriesViewController.swift in Sources */,
 				3BB3F3732818B52A00B21469 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

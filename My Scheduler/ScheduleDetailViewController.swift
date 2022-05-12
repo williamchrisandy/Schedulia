@@ -16,7 +16,7 @@ class ScheduleDetailViewController: UIViewController, UITextViewDelegate
     @IBOutlet weak var datePickerEndTime: UIDatePicker!
     @IBOutlet weak var textViewNotes: UITextView!
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    unowned let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var schedule: Schedule?
     var deleteData = true
     var mode = "Edit"
@@ -93,11 +93,11 @@ class ScheduleDetailViewController: UIViewController, UITextViewDelegate
         
         if schedule?.has == nil
         {
-            self.present(StaticFunction.prepareWarning(warningMessage: "Activity cannot be empty. Please try again!"), animated: true)
+            present(StaticFunction.prepareWarning(warningMessage: "Activity cannot be empty. Please try again!"), animated: true)
         }
         else if datePickerStartTime.date > datePickerEndTime.date
         {
-            self.present(StaticFunction.prepareWarning(warningMessage: "Start Time cannot be earlier than End Time. Please try again!"), animated: true)
+            present(StaticFunction.prepareWarning(warningMessage: "Start Time cannot be earlier than End Time. Please try again!"), animated: true)
         }
         else
         {
@@ -130,6 +130,10 @@ class ScheduleDetailViewController: UIViewController, UITextViewDelegate
             }
             
             schedule?.has = activityArray[source.selectedIndexPath!.row]
+        }
+        else
+        {
+            print("Test")
         }
     }
     

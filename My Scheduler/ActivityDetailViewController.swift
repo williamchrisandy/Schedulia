@@ -14,7 +14,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var labelCategories: UILabel!
     @IBOutlet weak var tableViewHistory: UITableView!
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    unowned let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var activity: Activity?
     var deleteData = true
     var mode = "Edit"
@@ -101,7 +101,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDataSource, UIT
         guard activityName.count > 0
         else
         {
-            self.present(StaticFunction.prepareWarning(warningMessage: "Activity Name cannot be empty. Please try again!"), animated: true)
+            present(StaticFunction.prepareWarning(warningMessage: "Activity Name cannot be empty. Please try again!"), animated: true)
             return
         }
         
@@ -112,7 +112,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDataSource, UIT
             
             if result.isEmpty == false
             {
-                self.present(StaticFunction.prepareWarning(warningMessage: "Activity Name has already existed. Please try again!"), animated: true)
+                present(StaticFunction.prepareWarning(warningMessage: "Activity Name has already existed. Please try again!"), animated: true)
             }
             else
             {

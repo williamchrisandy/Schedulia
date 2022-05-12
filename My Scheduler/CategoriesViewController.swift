@@ -25,18 +25,16 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var textFieldKeyword: UITextField!
     @IBOutlet weak var tableViewCategory: UITableView!
     
-    var addCategoryAlertController: UIAlertController?
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let standardUserDefault = UserDefaults.standard
+    unowned let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    unowned let standardUserDefault = UserDefaults.standard
     var arrayCategory: [CategoryInActivity] = []
     var activity: Activity?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        addCategoryAlertController = prepareSaveCategoryDialog()
         
-        textFieldKeyword.leftViewMode = UITextField.ViewMode.always
+        textFieldKeyword.leftViewMode = .always
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "magnifyingglass")
         textFieldKeyword.leftView = imageView
@@ -66,67 +64,6 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             let contains = StaticFunction.trimAndLowercaseString(string: sender.text!)
             getCategoryData(contains: contains.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
         }
-    }
-    
-    func prepareSaveCategoryDialog() -> UIAlertController
-    {
-        let alert = UIAlertController(title: "Category Detail", message: "Input new category detail", preferredStyle: .alert)
-        
-        alert.addTextField
-        {
-            textField in
-            textField.placeholder = "Category Name"
-        }
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: saveCategory)
-        
-        alert.addAction(saveAction)
-        
-        return alert
-    }
-    
-    func saveCategory(action: UIAlertAction)
-    {
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let textFieldCategoryName = addCategoryAlertController!.textFields![0]
-        let categoryName = textFieldCategoryName.text!
-        
-        guard categoryName.count > 0
-        else
-        {
-            present(StaticFunction.prepareWarning(warningMessage: "Action is reborted.\n\nCategory Name cannot be empty. Please try again!"), animated: true)
-            return
-        }
-        
-        do
-        {
-            let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest(name: categoryName)
-            let result = try context.fetch(fetchRequest)
-
-            if result.isEmpty == false
-            {
-                present(StaticFunction.prepareWarning(warningMessage: "Action is reborted.\n\nCategory Name has already existed. Please try again!"), animated: true)
-            }
-            else
-            {
-                let category = Category(context: context)
-                category.id = Int16(standardUserDefault.integer(forKey: keyCategoryLastId) + 1)
-                category.name = categoryName
-
-                standardUserDefault.set(category.id, forKey: keyCategoryLastId)
-
-                context.insert(category)
-                    try context.save()
-                arrayCategory.append(CategoryInActivity(category: category, isInActivity: false))
-                tableViewCategory.insertRows(at: [IndexPath(row: arrayCategory.count-1, section: 0)], with: .bottom)
-            }
-        }
-        catch
-        {
-            print(error.localizedDescription)
-        }
-        textFieldCategoryName.text = ""
     }
    
     func getCategoryData(contains: String)
@@ -163,7 +100,61 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func addCategory(_ sender: UIBarButtonItem)
     {
-        present(addCategoryAlertController!, animated: true)
+        let context = appDelegate.persistentContainer.viewContext
+        let addCategoryAlertController = UIAlertController(title: "Category Detail", message: "Input new category detail", preferredStyle: .alert)
+        
+        addCategoryAlertController.addTextField
+        {
+            textField in
+            textField.placeholder = "Category Name"
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default)
+        {
+            [unowned addCategoryAlertController, unowned self] action in
+            
+            unowned let textFieldCategoryName = addCategoryAlertController.textFields![0]
+            let categoryName = textFieldCategoryName.text!
+            
+            guard categoryName.count > 0
+            else
+            {
+                self.present(StaticFunction.prepareWarning(warningMessage: "Action is reborted.\n\nCategory Name cannot be empty. Please try again!"), animated: true)
+                return
+            }
+            
+            do
+            {
+                let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest(name: categoryName)
+                let result = try context.fetch(fetchRequest)
+
+                if result.isEmpty == false
+                {
+                    self.present(StaticFunction.prepareWarning(warningMessage: "Action is reborted.\n\nCategory Name has already existed. Please try again!"), animated: true)
+                }
+                else
+                {
+                    let category = Category(context: context)
+                    category.id = Int16(self.standardUserDefault.integer(forKey: keyCategoryLastId) + 1)
+                    category.name = categoryName
+
+                    self.standardUserDefault.set(category.id, forKey: keyCategoryLastId)
+
+                    context.insert(category)
+                    try context.save()
+                    self.arrayCategory.append(CategoryInActivity(category: category, isInActivity: false))
+                    self.tableViewCategory.insertRows(at: [IndexPath(row: self.arrayCategory.count-1, section: 0)], with: .bottom)
+                }
+            }
+            catch
+            {
+                print(error.localizedDescription)
+            }
+            textFieldCategoryName.text = ""
+        }
+        
+        addCategoryAlertController.addAction(saveAction)
+        self.present(addCategoryAlertController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -214,7 +205,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         let category = arrayCategory[indexPath.row]
         let editAction = UIContextualAction(style: .normal, title: "Edit")
         {
-            action, view, handler in
+            [unowned self] action, view, handler in
             
             let editAlertController = UIAlertController(title: "Edit Category", message: "Input new category detail", preferredStyle: .alert)
             
@@ -227,7 +218,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             
             let saveAction = UIAlertAction(title: "Save", style: .default)
             {
-                action in
+                [unowned editAlertController, unowned self] action in
                 let textFieldCategoryName = editAlertController.textFields![0]
                 let categoryName = textFieldCategoryName.text!
                 
@@ -266,7 +257,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete")
         {
-            action, view, handler in
+            [unowned self] action, view, handler in
             do
             {
                 context.delete(category.category)

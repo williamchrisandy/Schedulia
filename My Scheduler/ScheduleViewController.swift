@@ -38,7 +38,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     {
         self.navigationController?.visibleViewController?.navigationItem.title = "Schedule"
         
-        let addButton = UIBarButtonItem.init(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(self.addSchedule(_:)))
+        let addButton = UIBarButtonItem.init(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addSchedule))
         self.navigationController?.visibleViewController?.navigationItem.setRightBarButton(addButton, animated: false)
         
         getScheduleData()

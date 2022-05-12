@@ -13,7 +13,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var textFieldKeyword: UITextField!
     @IBOutlet weak var tableViewActivity: UITableView!
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    unowned let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let standardUserDefault = UserDefaults.standard
     var arrayCategory: [Category] = []
     var arrayActivityNoCategory: [Activity] = []
@@ -25,7 +25,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     {
         super.viewDidLoad()
         
-        textFieldKeyword.leftViewMode = UITextField.ViewMode.always
+        textFieldKeyword.leftViewMode = .always
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "magnifyingglass")
         textFieldKeyword.leftView = imageView
@@ -35,7 +35,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     {
         self.navigationController?.visibleViewController?.navigationItem.title = "Activity"
         
-        let addButton = UIBarButtonItem.init(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(self.addActivity(_:)))
+        let addButton = UIBarButtonItem.init(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addActivity))
         self.navigationController?.visibleViewController?.navigationItem.setRightBarButton(addButton, animated: false)
         
         getCategoryData()

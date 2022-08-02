@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  My Scheduler
+//  Schedulia
 //
 //  Created by William Chrisandy on 28/04/22.
 //

@@ -1,6 +1,6 @@
 //
 //  Activity+CoreDataClass.swift
-//  My Scheduler
+//  Schedulia
 //
 //  Created by William Chrisandy on 27/04/22.
 //

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  My Scheduler
+//  Schedulia
 //
 //  Created by William Chrisandy on 27/04/22.
 //
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-        let container = NSPersistentContainer(name: "My_Scheduler")
+        let container = NSPersistentContainer(name: "Schedulia")
         container.loadPersistentStores(
             completionHandler:
                 {
